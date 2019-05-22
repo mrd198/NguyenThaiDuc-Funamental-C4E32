@@ -43,17 +43,15 @@ def generate_quiz():
             ]
 
 def mouse_press(x, y, text, color, quiz_type):
-    choose_color = 0
-    choose_text = 0
-    for choose_shape in shapes:
-        if is_inside([x,y],choose_shape["rect"]):
-            choose_color = choose_shape["color"]
-            choose_text = choose_shape["text"]
     if quiz_type == 0:
-        if choose_text == text:
-            return True
-        else: return False
-    elif quiz_type == 1:
-        if choose_color == color:
-            return True
-        else: return False
+        for i in shapes:
+            if i['text'] == text:
+                toa_do = i['rect']
+    else:
+        for i in shapes:
+            if i['color'] == color:
+                toa_do = i['rect']
+    if toa_do[0] <= x <= toa_do[0] + toa_do[2] and toa_do[1] <= y <= toa_do[1] + toa_do[3]:
+        return True
+    else:
+        return False
